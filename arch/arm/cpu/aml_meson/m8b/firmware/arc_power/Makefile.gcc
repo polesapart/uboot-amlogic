@@ -92,7 +92,7 @@ $(obj)%.o:	%.s
 		
 $(obj)%.o:	%.S
 	@$(call MKDIR, $(@D))
-	$(ARCCC)   $(ASM_FLAGS)  \
+	$(ARCCC)  $(ARCASM_FLAGS)  \
 		-o $@ $< -c		
 		
 $(obj)%.S:	%.s

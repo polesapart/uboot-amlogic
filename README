@@ -21,6 +21,15 @@
 # MA 02111-1307 USA
 #
 
+How to compile for onecloud:
+1. change to uboot-amlogic
+2. make m8b_m201_1G_config
+3. install arc-elf32-* toolchains @ https://github.com/foss-for-synopsys-dwc-arc-processors/toolchain
+   the latest work toolchain is https://github.com/foss-for-synopsys-dwc-arc-processors/toolchain/releases/tag/arc-2016.03
+   and export to your $PATH
+4. install arm toolchain
+5. make
+
 Summary:
 ========
 
