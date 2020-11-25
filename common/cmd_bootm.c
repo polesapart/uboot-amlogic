@@ -176,6 +176,9 @@ void __arch_preboot_os(void)
 }
 void arch_preboot_os(void) __attribute__((weak, alias("__arch_preboot_os")));
 
+void show_boot_progress(int status) {
+}
+
 #if defined(__ARM__)
   #define IH_INITRD_ARCH IH_ARCH_ARM
 #elif defined(__avr32__)

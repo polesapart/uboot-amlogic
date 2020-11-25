@@ -288,8 +288,8 @@ foreach $line (@in)
     # So we switch them to MRS/MSR... seems to work.
     #===============================================================
 
-    $instruction=~s/^\s*VMRS(.*)/        MRS$1/ig;
-    $instruction=~s/^\s*VMSR(.*)/        MSR$1/ig;
+    $instruction=~s/^\s*VMRS(.*)/        VMRS$1/ig;
+    $instruction=~s/^\s*VMSR(.*)/        VMSR$1/ig;
     
 
     #--------------------------------------------------------------------------

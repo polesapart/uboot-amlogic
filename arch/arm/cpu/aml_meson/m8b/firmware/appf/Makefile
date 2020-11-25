@@ -58,7 +58,7 @@ MAPFILE=appf.gls
 CFLAGS= -g -O2 -fpie -fpic -mcpu=$(CPU) -I. -DNO_PCU -I$(EXTINCDIR) -I$(EXTINCDIR2) -I$(EXTINCDIR3) 
 # -DUSE_REALVIEW_EB_RESETS
 ASFLAGS= -g -mcpu=$(CPU) -mfpu=vfpv4 -c
-LDFLAGS= -g -nostartfiles -pie -fpic -static -e $(ENTRY_POINT) --verbose -T $(MAPFILE) -M
+LDFLAGS= -g -nostartfiles -pie -static  --no-dynamic-linker  -e $(ENTRY_POINT) --verbose -T $(MAPFILE) -M
 
 $(OUTDIR)/%.o : $(OUTDIR)/%.S	# Remove make's implicit rule for .S files
 .PRECIOUS : $(OUTDIR)/%.gnu.S

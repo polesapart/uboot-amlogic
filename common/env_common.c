@@ -257,7 +257,7 @@ void env_relocate (void)
 #if defined(CONFIG_ENV_IS_NOWHERE)	/* Environment not changable */
 		set_default_env(NULL);
 #else
-		show_boot_progress (-60);
+		//show_boot_progress (-60);
 		set_default_env("!bad CRC");
 #endif
 	} else {

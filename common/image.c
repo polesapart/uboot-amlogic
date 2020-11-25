@@ -55,6 +55,8 @@
 #include <u-boot/md5.h>
 #include <sha1.h>
 
+void show_boot_progress(int status) {}
+
 static int fit_check_ramdisk (const void *fit, int os_noffset,
 		uint8_t arch, int verify);
 #endif

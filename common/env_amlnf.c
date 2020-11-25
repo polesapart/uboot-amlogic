@@ -38,12 +38,11 @@
 #include <linux/stddef.h>
 #include <malloc.h>
 #include <nand.h>
-//#include <asm/arch/nand.h>
+#include <asm/arch/nand.h>
 #include <linux/err.h>
 #include <search.h>
 #include <errno.h>
-#include "../drivers/amlnf/include/amlnf_dev.h"
-
+//#include "../drivers/amlnf/include/amlnf_dev.h"
 
 #if defined(CONFIG_CMD_SAVEENV) && defined(CONFIG_CMD_NAND)
 #define CMD_SAVEENV
@@ -222,24 +221,24 @@ int saveenv(void)
 	unsigned char *env_data, * name = "env"; 
    	 env_t  *env_ptr = NULL;
 	 int ret ,len, sector, page_sector;
-	 aml_nand_dbg("saveenv");
+	 //aml_nand_dbg("saveenv");
 
 	
 	env_ptr = (env_t *) aml_nand_malloc(CONFIG_ENV_SIZE);
 	if(env_ptr == NULL){
-		aml_nand_msg("malloc failed for env_ptr");
+		//aml_nand_msg("malloc failed for env_ptr");
 		goto exit_error0;
 	}
 
 	env_data = (unsigned char *)(&env_ptr->data);
 	len = hexport_r(&env_htab, '\0', &env_data, ENV_SIZE);
 	if (len < 0){
-		aml_nand_msg("Cannot export environment");
+		//aml_nand_msg("Cannot export environment");
 		goto exit_error0;
 	}
 
 	env_ptr->crc  = crc32(0, env_ptr->data, ENV_SIZE);
-	aml_nand_dbg("save env_ptr->crc=%d",env_ptr->crc);
+	//aml_nand_dbg("save env_ptr->crc=%d",env_ptr->crc);
 #if 0	
 	nftl_dev = aml_nftl_get_dev(name);
 	if(!nftl_dev){
@@ -273,7 +272,7 @@ int saveenv(void)
 #else
 	ret = amlnf_env_save((unsigned char *)env_ptr,CONFIG_ENV_SIZE);
 	if(ret < 0){
-		aml_nand_msg("nand save env failed");
+		//aml_nand_msg("nand save env failed");
 		ret = -1;
 		goto exit_error0;
 	}
@@ -322,11 +321,11 @@ int readenv (u_char * buf)
 	
 #else
 	unsigned char *env_magic = "nenv";
-	aml_nand_dbg("readenv :#####");
+	//aml_nand_dbg("readenv :#####");
 	ret = amlnf_env_read((unsigned char *)env_ptr,CONFIG_ENV_SIZE);
 	if(ret){	
-		aml_nand_msg("readenv : nand read env failed");
-		return NAND_READ_FAILED;
+		//aml_nand_msg("readenv : nand read env failed");
+		return 16;
 	}
 #endif
 	crc = env_ptr->crc;
@@ -417,7 +416,8 @@ void env_relocate_spec (void)
 	memset(env_buf.data, 0, ENV_SIZE);
 	ret = readenv((u_char *) &env_buf);
 	if (ret ) {
-		if(ret == NAND_READ_FAILED){
+		//if(ret == NAND_READ_FAILED){
+		if(ret == 16){
 			set_default_env("!readenv() failed");	
 			saveenv();
 		}

@@ -166,7 +166,7 @@ int do_bootm_linux(int flag, int argc, char *argv[], bootm_headers_t *images)
 	printf ("Using machid 0x%x from environment\n", machid);
 #endif	
 
-	show_boot_progress (15);
+	//show_boot_progress (15);
 
 #ifdef CONFIG_OF_LIBFDT
 	if (images->ft_len)

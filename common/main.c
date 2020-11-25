@@ -67,8 +67,10 @@ extern int __g_nTStep_4BC722B3__;
 /*
  * Board-specific Platform code can reimplement show_boot_progress () if needed
  */
+/*
 void inline __show_boot_progress (int val) {}
 void show_boot_progress (int val) __attribute__((weak, alias("__show_boot_progress")));
+*/
 
 #if defined(CONFIG_UPDATE_TFTP)
 void update_tftp (void);

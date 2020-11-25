@@ -46,7 +46,9 @@
 //static DECLARE_WAIT_QUEUE_HEAD(osd_vsync_wq);
 static bool vsync_hit = false;
 static bool osd_vf_need_update = false;
+#ifdef CONFIG_AM_VIDEO
 static struct vframe_provider_s osd_vf_prov;
+#endif
 static int  g_vf_visual_width;
 static int  g_vf_width;
 static int  g_vf_height;

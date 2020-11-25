@@ -32,7 +32,7 @@ extern int amlnf_init(unsigned char flag);
 extern int amlnf_exit(void);
 extern void amldev_dumpinfo(struct amlnand_phydev *phydev);
 //static int plane_mode = 0;
-struct amlnf_dev * nftl_device = NULL;
+//struct amlnf_dev * nftl_device = NULL;
 struct amlnand_phydev *phy_device=NULL;
 static int nand_protect = 1;
 
