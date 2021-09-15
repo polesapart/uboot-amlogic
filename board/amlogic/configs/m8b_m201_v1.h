@@ -32,7 +32,7 @@
 //#define CONFIG_VIDEO_AMLTVOUT 1
 //Enable LCD output
 //#define CONFIG_VIDEO_AMLLCD
-#define LCD_BPP LCD_COLOR16
+//#define LCD_BPP LCD_COLOR16
 
 #define CONFIG_ACS
 #ifdef CONFIG_ACS
@@ -110,7 +110,7 @@
  * Enable CONFIG_MUSB_HCD for Host functionalities MSC, keyboard
  * Enable CONFIG_MUSB_UDD for Device functionalities.
  */
-/* #define CONFIG_MUSB_UDC		1 */
+//#define CONFIG_MUSB_UDC		1
 #define CONFIG_CMD_USB 1
 #if defined(CONFIG_CMD_USB)
 	#define CONFIG_M8_USBPORT_BASE_A	0xC9040000
@@ -149,16 +149,16 @@
 	"chipname=8726m8\0" \
 	"get_dt=checkhw\0" \
 	"initrd_high=60000000\0" \
-	"hdmimode=1080p\0" \
+	"hdmimode=720p\0" \
 	"cvbsmode=576cvbs\0" \
-	"outputmode=1080p\0" \
+	"outputmode=720p\0" \
 	"vdac_config=0x10\0" \
 	"initargs=init=/init console=ttyS0,115200n8 no_console_suspend \0" \
 	"video_dev=tvout\0" \
 	"display_width=1920\0" \
 	"display_height=1080\0" \
-	"display_bpp=16\0" \
-	"display_color_format_index=16\0" \
+	"display_bpp=24\0" \
+	"display_color_format_index=24\0" \
 	"display_layer=osd2\0" \
 	"display_color_fg=0xffff\0" \
 	"display_color_bg=0\0" \
@@ -256,8 +256,9 @@
 					"echo no recovery in flash; "\
 				"fi;\0" \
     \
-	"usb_burning=update 1000\0" \
-    "sdc_burning=sdc_burn ${sdcburncfg}\0"
+    "usb_burning=update 1000\0" \
+    "sdc_burning=sdc_burn ${sdcburncfg}\0" \
+    "aml_dt=m8b_m201C_512M\0"
 
 
 #define CONFIG_BOOTCOMMAND   "run storeboot"
@@ -318,7 +319,7 @@
 //----------------------------------------------------------------------
 //Please set the M8 CPU clock(unit: MHz)
 //legal value: 600, 792, 996, 1200
-#define M8_CPU_CLK 		    (792)
+#define M8_CPU_CLK 		    (1200)
 #define CONFIG_SYS_CPU_CLK	(M8_CPU_CLK)
 //----------------------------------------------------------------------
 
@@ -338,12 +339,12 @@
 
 //Please just define m8 DDR clock here only
 //current DDR clock range (408~804)MHz with fixed step 12MHz
-#define CFG_DDR_CLK    636 //696 //768  //792// (636)
-#define CFG_DDR_MODE   CFG_DDR_32BIT
+#define CFG_DDR_CLK    696 //696 //768  //792// (636)
+#define CFG_DDR_MODE   CFG_DDR_16BIT_LANE01
 
 #ifdef CONFIG_ACS
 //#define CONFIG_DDR_MODE_AUTO_DETECT	//ddr bus-width auto detection
-#define CONFIG_DDR_SIZE_AUTO_DETECT	//ddr size auto detection
+//#define CONFIG_DDR_SIZE_AUTO_DETECT	//ddr size auto detection
 #endif
 
 //On board DDR capactiy
@@ -363,9 +364,9 @@
 //col size.   2'b01 : A0~A8,      2'b10 : A0~A9  
 #define PHYS_MEMORY_START        (0x00000000) // ???
 #if   defined(CONFIG_DDR3_512MB)
-	#define CONFIG_DDR3_ROW_SIZE (2)
+	#define CONFIG_DDR3_ROW_SIZE (3)
 	#define CONFIG_DDR3_COL_SIZE (2)
-	#define CONFIG_DDR_ROW_BITS  (14)
+	#define CONFIG_DDR_ROW_BITS  (15)
 	#define PHYS_MEMORY_SIZE     (0x20000000) // 512MB
 #elif defined(CONFIG_DDR3_1GB)
 	//2Gb(X16) x 4pcs
